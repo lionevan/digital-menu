@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YASOU - מערכת הזמנות</title>
+  <link rel="stylesheet" href="css/spa.css">
+</head>
+<body>
+  <aside class="side" id="side">
+    <div class="logo">
+      <div class="logo-box">Y</div>
+      <div>
+        <strong>YASOU</strong>
+        <span>TAVERNA</span>
+      </div>
+    </div>
+    <nav class="side-nav">
+      <button class="active" type="button" data-view="tables">שולחנות</button>
+      <button type="button" data-view="active">הזמנות פעילות</button>
+      <button type="button" data-view="menu">תפריט</button>
+      <button type="button" data-view="kitchen">קופה / מטבח</button>
+    </nav>
+    <div class="user-chip">מלצר</div>
+  </aside>
+
+  <div class="screen-shade" id="screenShade"></div>
+
+  <main class="app">
+    <header class="mobile-bar">
+      <button class="hamburger" type="button" id="hamburger">☰</button>
+      <strong>YASOU</strong>
+      <span></span>
+    </header>
+
+    <section class="notice">
+      <div>
+        <strong id="noticeTitle">מערכת הזמנות פעילה</strong>
+        <p id="noticeText">בחר שולחן כדי לפתוח הזמנה חדשה.</p>
+      </div>
+      <button class="dark-action" type="button" id="refreshButton">רענון</button>
+    </section>
+
+    <section class="view active" id="view-tables">
+      <div class="page-title">
+        <div>
+          <h1>ניהול שולחנות</h1>
+          <p>מפת עבודה מהירה למלצר, בהשראת הדשבורד החדש.</p>
+        </div>
+        <div class="legend">
+          <span><i class="free"></i> פנוי</span>
+          <span><i class="reserved"></i> שמור</span>
+          <span><i class="occupied"></i> תפוס</span>
+        </div>
+      </div>
+      <div class="table-zones" id="tableZones"></div>
+    </section>
+
+    <section class="view" id="view-menu">
+      <div class="page-title">
+        <div>
+          <h1>תפריט לקוחות</h1>
+          <p>אותו מקור נתונים, בשלוש שפות.</p>
+        </div>
+        <div class="segmented" id="languageTabs">
+          <button class="active" type="button" data-lang="he">עברית</button>
+          <button type="button" data-lang="en">English</button>
+          <button type="button" data-lang="gr">Ελληνικά</button>
+        </div>
+      </div>
+      <div class="menu-shell">
+        <div class="category-list" id="categoryList"></div>
+        <div class="menu-cards" id="menuCards"></div>
+      </div>
+    </section>
+
+    <section class="view" id="view-active">
+      <div class="page-title">
+        <div>
+          <h1>הזמנות פעילות</h1>
+          <p>חזרה מהירה לשולחנות פתוחים כדי להוסיף עוד מנות או לענות לסועדים.</p>
+        </div>
+        <div class="legend">
+          <span><i class="reserved"></i> שמור</span>
+          <span><i class="occupied"></i> תפוס</span>
+        </div>
+      </div>
+      <div class="active-orders-grid" id="activeOrdersGrid"></div>
+    </section>
+
+    <section class="view" id="view-kitchen">
+      <div class="page-title">
+        <div>
+          <h1>קופה / מטבח</h1>
+          <p>תצוגת הזמנות נכנסות לפי עמדות.</p>
+        </div>
+        <div class="segmented" id="stationTabs">
+          <button class="active" type="button" data-station="all">הכול</button>
+          <button type="button" data-station="hot">חם</button>
+          <button type="button" data-station="cold">קר</button>
+          <button type="button" data-station="bar">בר</button>
+        </div>
+      </div>
+      <div class="orders-grid" id="ordersGrid"></div>
+    </section>
+  </main>
+
+  <div class="order-modal" id="orderModal">
+    <button class="modal-bg" type="button" onclick="closeOrder()"></button>
+    <section class="order-window">
+      <header class="order-top">
+        <div class="table-number" id="orderTableNumber">#</div>
+        <div>
+          <h2 id="orderTitle">הזמנה חדשה</h2>
+          <p id="orderSubtitle"></p>
+        </div>
+        <button class="close-btn" type="button" onclick="closeOrder()">×</button>
+      </header>
+      <div class="order-content">
+        <aside class="order-categories" id="orderCategories"></aside>
+        <section class="order-menu">
+          <input class="search" id="searchInput" type="search" placeholder="חיפוש מנה...">
+          <div class="order-items" id="orderItems"></div>
+        </section>
+        <aside class="cart">
+          <div class="cart-head">
+            <strong>סיכום הזמנה</strong>
+            <span id="cartCount">0 פריטים</span>
+          </div>
+          <div class="cart-lines" id="cartLines"></div>
+          <div class="total-row">
+            <span>סה"כ</span>
+            <strong id="cartTotal">0€</strong>
+          </div>
+          <button class="send-btn" type="button" id="sendButton">שלח למטבח</button>
+          <button class="reserve-btn" type="button" id="reserveButton">סמן כשמור</button>
+        </aside>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/menu-data.js"></script>
+  <script src="js/tables.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/order-queue.js"></script>
+  <script src="js/spa.js"></script>
+</body>
+</html>
