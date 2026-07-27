@@ -1,5 +1,5 @@
 const YASOU_API = (() => {
-  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby79Qn4B8GpDqhXsL5e2fxCcngzzRyVfG-sKzPnMvsDinjpNs5KyCcMtZVf4mcFoYJ9/exec";
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyvyZluQUVM1FwM8a5LV9es8Y4ir7fV3HCSF8nyvUks49QSot1f7Qz_6HEbzXmgiNQ6/exec";
 
   function buildUrl(action, payload) {
     const url = new URL(APPS_SCRIPT_URL);
